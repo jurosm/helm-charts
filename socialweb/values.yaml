@@ -1,0 +1,9 @@
+upload:
+  image: jurosm/upload-service
+  internalPort: 8080
+  replicaCount: 1
+  enabled: true
+  externalPort: 80
+
+ingress:
+  enabled: true
