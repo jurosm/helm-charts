@@ -20,7 +20,7 @@ spec:
       containers:
       - name: "social-web"
         image: "{{ .Values.socialWeb.image }}"
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.socialWeb.internalPort | int }}
         envFrom:

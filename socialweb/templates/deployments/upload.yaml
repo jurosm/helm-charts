@@ -17,18 +17,25 @@ spec:
         name: {{ printf "%s-upload" $.Release.Namespace | lower | quote }}
         service: upload
     spec:
+      volumes:
+      - name: "storage-volume"
+        persistentVolumeClaim:
+          claimName: {{ printf "%s-upload-storage-pvc" .Release.Namespace | lower }}
       containers:
       - name: "upload"
         image: {{ .Values.upload.image | quote }}
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: {{ .Values.upload.internalPort | int }}
-        # livenessProbe:
-        #   httpGet:
-        #     path: /health
-        #     port: {{ .Values.upload.internalPort | int }}
-        # readinessProbe:
-        #   httpGet:
-        #     path: /health
-        #     port: {{ .Values.upload.internalPort | int }}
+        volumeMounts:
+        - name: "storage-volume"
+          mountPath: "/usr/src/app/uploads"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.upload.internalPort | int }}
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.upload.internalPort | int }}
 {{- end }}
