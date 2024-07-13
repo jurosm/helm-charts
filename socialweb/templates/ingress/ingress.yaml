@@ -22,4 +22,11 @@ spec:
               name: {{ printf "%s-upload" $.Release.Namespace | lower }}
               port: 
                 number: {{ $.Values.upload.externalPort }}
+        - pathType: Prefix
+          path: /social-web(/|$)(.*)
+          backend:
+            service:
+              name: {{ printf "%s-social-web" $.Release.Namespace | lower }}
+              port: 
+                number: {{ $.Values.socialWeb.externalPort }}
 {{- end -}}

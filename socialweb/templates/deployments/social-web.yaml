@@ -1,0 +1,33 @@
+{{- if $.Values.socialWeb.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ printf "%s-social-web" $.Release.Namespace | lower }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  selector:
+    matchLabels:
+      name: {{ printf "%s-social-web" $.Release.Namespace | lower | quote }}
+  replicas: {{ default 1 .Values.socialWeb.replicaCount | int }}
+  template:
+    metadata:
+      labels:
+        name: {{ printf "%s-social-web" $.Release.Namespace | lower | quote }}
+        service: social-web
+    spec:
+      containers:
+      - name: "social-web"
+        image: "{{ .Values.socialWeb.image }}"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ .Values.socialWeb.internalPort | int }}
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.socialWeb.internalPort | int }}
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: {{ .Values.socialWeb.internalPort | int }}
+{{- end }}

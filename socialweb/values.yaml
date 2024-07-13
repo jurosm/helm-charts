@@ -5,5 +5,12 @@ upload:
   enabled: true
   externalPort: 80
 
+socialWeb:
+  image: jurosm/social-web-service
+  internalPort: 8080
+  replicaCount: 1
+  enabled: true
+  externalPort: 80
+
 ingress:
   enabled: true
