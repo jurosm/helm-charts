@@ -7,10 +7,13 @@ upload:
 
 socialWeb:
   image: jurosm/social-web-service
-  internalPort: 8080
+  internalPort: 8000
   replicaCount: 1
   enabled: true
   externalPort: 80
-
+  db:
+    password: password
+    name: socialweb
+  jwtPrivateKey: password
 ingress:
   enabled: true
