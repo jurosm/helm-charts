@@ -1,0 +1,12 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ printf "%s-pet-store-conf" $.Release.Namespace | lower }}
+  namespace: {{ $.Release.Namespace }}
+data:
+  DB_CONNECTION_STRING: {{ printf "User ID=postgres;Password=%s;Server=%s;Port=5432;Database=%s;" $.Values.petStore.postgres.password $.Values.petStore.postgres.host $.Values.petStore.postgres.name }}
+  AUTH0_DOMAIN: {{ $.Values.petStore.auth0.domain }}
+  AUTH0_AUDIENCE: {{ $.Values.petStore.auth0.audience }}
+  AUTH0_CLIENT_ID: {{ $.Values.petStore.auth0.clientId }}
+  AUTH0_CLIENT_SECRET: {{ $.Values.petStore.auth0.secret }}
+  STRIPE_SECRET: {{ $.Values.petStore.stripe.secret }}

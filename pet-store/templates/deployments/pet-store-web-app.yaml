@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ printf "%s-pet-store-web-app" $.Release.Namespace | lower }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  selector:
+    matchLabels:
+      name: {{ printf "%s-pet-store-web-app" $.Release.Namespace | lower }}
+  replicas: {{ default 1 $.Values.petStoreWebApp.replicaCount | int }}
+  template:
+    metadata:
+      labels:
+        name: {{ printf "%s-pet-store-web-app" $.Release.Namespace | lower }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: {{ $.Values.petStoreWebApp.image }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ $.Values.petStoreWebApp.internalPort | int }}
+        envFrom:
+        - configMapRef:
+            name: {{ printf "%s-pet-store-web-app-conf" $.Release.Namespace | lower }}

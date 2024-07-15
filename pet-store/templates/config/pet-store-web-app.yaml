@@ -1,0 +1,7 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ printf "%s-pet-store-web-app-conf" $.Release.Namespace | lower }}
+  namespace: {{ $.Release.Namespace }}
+data:
+  API_URL: {{ $.Values.petStoreWebApp.apiUrl | quote }}

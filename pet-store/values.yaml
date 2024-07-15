@@ -1,0 +1,24 @@
+petStore:
+  image: "jurosm/pet-store-api"
+  internalPort: 80
+  externalPort: 80
+  replicaCount: 1
+  postgres:
+    password: "password"
+    host: "pet-store.svc.cluster.local"
+    name: "postgres"
+
+  auth0:
+    domain: "pet-store.eu.auth0.com"
+    audience: "https://petstore.com"
+    clientId: "6WmB1sKMFr9YoTyNK7aI3csWipJh3k2c"
+    secret: "NSXlTNsuQqqMXfUfXgnelWhUL_wLqXWpSKfgGeYGwzz_BeF7EtbPKCbKpRXsJ4qL"
+  stripe:
+    secret: "sk_test_wAqd9vsvPb6zDLclp1LigGst00tWkEbSOA"
+
+petStoreWebApp:
+  image: "jurosm/pet-store"
+  internalPort: 4200
+  externalPort: 80
+  replicaCount: 1
+  apiUrl: "http://localhost:5000"
