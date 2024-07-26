@@ -13,8 +13,17 @@ socialWeb:
   enabled: true
   externalPort: 80
   db:
-    password: password
-    name: socialweb
+    url: "postgres://postgres:password@mica-postgresdb.test.svc.cluster.local/socialweb"
   jwtPrivateKey: password
 ingress:
   enabled: true
+
+cert-manager:
+  namespace: security
+
+postgresdb:
+  global:
+    postgresql:
+      auth:
+        postgresPassword: password
+        database: socialweb
