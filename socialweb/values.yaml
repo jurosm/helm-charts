@@ -20,6 +20,7 @@ ingress:
 
 cert-manager:
   namespace: security
+  installCRDs: true
 
 postgresdb:
   global:
