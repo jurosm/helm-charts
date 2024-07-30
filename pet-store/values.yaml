@@ -9,12 +9,12 @@ petStore:
     name: "postgres"
 
   auth0:
-    domain: "pet-store.eu.auth0.com"
-    audience: "https://petstore.com"
-    clientId: "6WmB1sKMFr9YoTyNK7aI3csWipJh3k2c"
-    secret: "NSXlTNsuQqqMXfUfXgnelWhUL_wLqXWpSKfgGeYGwzz_BeF7EtbPKCbKpRXsJ4qL"
+    domain: ""
+    audience: ""
+    clientId: ""
+    secret: ""
   stripe:
-    secret: "sk_test_wAqd9vsvPb6zDLclp1LigGst00tWkEbSOA"
+    secret: ""
 
 petStoreWebApp:
   image: "jurosm/pet-store"
