@@ -4,5 +4,5 @@ metadata:
   name: {{ printf "%s-social-web-conf" $.Release.Namespace | lower }}
   namespace: {{ $.Release.Namespace }}
 data:
-  DATABASE_URL: {{ printf "postgres://postgres:%s@postgres-database-postgresql.%s.svc.cluster.local/%s"  $.Values.socialWeb.db.password $.Release.Namespace $.Values.socialWeb.db.name  }}
+  DATABASE_URL: {{ $.Values.socialWeb.db.url  }}
   JWT_SIGN_PRIVATE_KEY: {{ $.Values.socialWeb.jwtPrivateKey }}

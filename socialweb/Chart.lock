@@ -1,0 +1,12 @@
+dependencies:
+- name: cert-manager
+  repository: https://charts.jetstack.io
+  version: v1.15.1
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 12.1.8
+- name: metrics-server
+  repository: https://kubernetes-sigs.github.io/metrics-server
+  version: 3.12.1
+digest: sha256:b67277c08f878ac0775ad15d279776d585e0baf1e7ac53f22fbcfeb8bc9617fd
+generated: "2024-07-27T15:25:25.4593923+02:00"

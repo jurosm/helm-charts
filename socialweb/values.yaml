@@ -13,8 +13,26 @@ socialWeb:
   enabled: true
   externalPort: 80
   db:
-    password: password
-    name: socialweb
+    url: "postgres://postgres:password@mica-postgresdb.test.svc.cluster.local/socialweb"
   jwtPrivateKey: password
 ingress:
   enabled: true
+
+cert-manager:
+  namespace: security
+  installCRDs: true
+
+postgresdb:
+  global:
+    postgresql:
+      auth:
+        postgresPassword: password
+        database: socialweb
+
+metrics-server:
+  defaultArgs:
+  - --cert-dir=/tmp
+  - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+  - --kubelet-use-node-status-port
+  - --metric-resolution=15s
+  - --kubelet-insecure-tls
