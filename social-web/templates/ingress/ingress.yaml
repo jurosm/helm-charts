@@ -19,14 +19,14 @@ spec:
   rules:
     - http:
         paths:
-        - pathType: Prefix
+        - pathType: ImplementationSpecific
           path: /upload(/|$)(.*)
           backend:
             service:
               name: {{ printf "%s-upload" $.Release.Namespace | lower }}
               port: 
                 number: {{ $.Values.upload.externalPort }}
-        - pathType: Prefix
+        - pathType: ImplementationSpecific
           path: /social-web(/|$)(.*)
           backend:
             service:

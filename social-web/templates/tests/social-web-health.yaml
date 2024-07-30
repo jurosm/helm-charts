@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ printf "%s-social-web-test" $.Release.Namespace | lower }}
+  namespace: {{ $.Release.Namespace }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: [{{ printf "%s-social-web/health" $.Release.Namespace | lower }}]
+  restartPolicy: Never
