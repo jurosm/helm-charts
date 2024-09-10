@@ -26,6 +26,12 @@ spec:
         envFrom:
           - configMapRef:
               name: {{ printf "%s-social-web-conf" $.Release.Namespace | lower }}
+        env:
+          - name: JWT_SIGN_PRIVATE_KEY
+            valueFrom:
+              secretKeyRef: 
+                name: {{ printf "%s-jwt-secret" $.Release.Namespace | lower }}
+                key: privateKey
         livenessProbe:
           httpGet:
             path: /health

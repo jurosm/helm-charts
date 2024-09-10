@@ -22,6 +22,9 @@ cert-manager:
   namespace: security
   installCRDs: true
 
+jwt:
+  privateKey: test
+
 postgresdb:
   global:
     postgresql:
